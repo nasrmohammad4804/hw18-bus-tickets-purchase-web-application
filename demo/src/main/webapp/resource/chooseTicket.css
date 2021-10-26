@@ -1,0 +1,35 @@
+table, th,td {
+    border:.5px solid black;
+    border-collapse: collapse;
+}
+th{
+    padding: 5px;
+}
+td{
+    text-align: center;
+    padding: 10px;
+
+}
+table{
+    width: 500px;
+
+    margin: 0 auto;
+}
+a{
+    display: inline-block;
+    background-color: rgb(231, 211, 211);
+    border: 2px solid rgb(23, 94, 201);
+    text-decoration: none;
+    width: 50px;
+    border-radius: 3px ;
+    font-size: 17px;
+
+}
+.header2-table{
+
+    color: white;
+    background-color: #b15f12;
+}
+.header1-table{
+    background-color: #FFB673;
+}

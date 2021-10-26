@@ -1,0 +1,72 @@
+.parent{
+    width: 90%;
+    height: 1000px;
+
+
+}
+.image{
+
+    width: 100%;
+    height: 80%;
+    margin-left: 100px;
+    background-image: url('https://www.nicepng.com/png/full/248-2489670_image-bus-white-bus.png');
+    /* background-size: 500px 500px; */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.parent-form{
+
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+input::placeholder{
+    font-size: 18px;
+    text-align: center;
+}
+
+input{
+    display: block;
+    height: 20%;
+    margin-top: 5px;
+    width: 50%;
+    font-size: 18px;
+    border-radius: 5px;
+
+}
+.mySubmit{
+    font-size: 20px;
+    background-color: black;
+    color: white;
+
+}
+.mySubmit:hover{
+    background-color:cornflowerblue;
+    color: black;
+}
+div span{
+    opacity: 1;
+    color: black;
+    font-size: 18px;
+}
+#my-form{
+    width: 50%;
+    height: 250px;
+    background-color: #a5a58d;
+    opacity: .6;
+    margin-right: 160px;
+    margin-top: 60px;
+    border-radius: 6px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    align-content: flex-start;
+}

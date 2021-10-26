@@ -1,0 +1,87 @@
+.parent {
+    width: 90%;
+    height: 1000px;
+
+
+}
+
+.image {
+
+    width: 100%;
+    height: 80%;
+    margin-left: 100px;
+    background-image: url('https://www.parsimods.ir/wp-content/uploads/2020/12/Iranian-bus-Volvo-Raniran-B12-TX-interior-9.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.my-form {
+
+
+    width: 30%;
+    height: 300px;
+    background-color: white;
+    opacity: .5;
+    margin-right: 120px;
+    margin-top: 60px;
+    border-radius: 6px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    align-content: flex-start;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+
+}
+
+input::placeholder {
+    font-size: 18px;
+    text-align: center;
+}
+
+input {
+
+    display: block;
+    height: 20%;
+    margin-top: 5px;
+    width: 250px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    flex-grow: 1;
+
+}
+
+.mySubmit {
+    display: block;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+
+    width: 260px;
+}
+
+.mySubmit:hover {
+    background-color: rgb(10, 134, 165);
+    color: black;
+}
+
+div span {
+    opacity: 1;
+    color: black;
+    font-size: 18px;
+}
+
+#registeration {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 18px;
+}

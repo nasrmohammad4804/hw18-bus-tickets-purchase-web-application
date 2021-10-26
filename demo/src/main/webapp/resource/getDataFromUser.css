@@ -1,0 +1,28 @@
+#mySubmit{
+
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+}
+table,tr,td{
+    border: 2px solid black;
+}
+table{
+    width: 450px;
+    border-collapse: collapse;
+    text-align: center;
+}
+td{
+    padding: 10px;
+}
+input{
+    font-size: 17px;
+
+}
+input:focus{
+    background-color:rgb(202, 165, 165);
+}
