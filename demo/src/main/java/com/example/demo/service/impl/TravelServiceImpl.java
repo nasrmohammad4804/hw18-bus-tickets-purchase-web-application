@@ -86,8 +86,8 @@ public class TravelServiceImpl implements TravelService {
         List<Travel> travels = new LinkedList<>();
 
         LocalTime.parse(LocalTime.now().format(formatter));
-        travels.add(new Travel(LocalDate.parse("2021-10-26"), LocalTime.parse(LocalTime.parse("14:30:15").format(formatter)), "tehran", "isfahan", 40));
-        travels.add(new Travel(LocalDate.parse("2021-10-26"), LocalTime.parse(LocalTime.parse("17:00:15").format(formatter)), "tehran", "isfahan", 55));
+        travels.add(new Travel(LocalDate.parse("2021-10-26"), LocalTime.parse(LocalTime.parse("20:30:15").format(formatter)), "tehran", "isfahan", 40));
+        travels.add(new Travel(LocalDate.parse("2021-10-26"), LocalTime.parse(LocalTime.parse("18:00:15").format(formatter)), "tehran", "isfahan", 55));
         travels.add(new Travel(LocalDate.parse("2021-10-27"), LocalTime.parse(LocalTime.parse("19:45:00").format(formatter)), "tehran", "isfahan", 38));
         travels.add(new Travel(LocalDate.parse("2021-10-27"), LocalTime.parse(LocalTime.parse("13:25:48").format(formatter)), "tehran", "isfahan", 60));
 

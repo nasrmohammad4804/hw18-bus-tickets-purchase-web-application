@@ -7,9 +7,6 @@ table, td,th{
 }
 table{
     width: 50%;
-
-
-
 }
 td{
     font-size: 18px;
@@ -55,7 +52,6 @@ td{
     right: 100px;
     background-color: grey;
     border-radius: 4px;
-
 }
 
 #disactive-link:hover .tooltip-text{

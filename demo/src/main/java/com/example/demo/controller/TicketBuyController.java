@@ -54,22 +54,6 @@ public class TicketBuyController {
 
        model.addAttribute("ticket",ticket);
 
-     /*   ticket.getRegisteredUsers().add((new RegisteredUser(result[0], result[1], gender)));
-
-        int capacity=ticket.getCapacity();
-        ticket.setCapacity(--capacity);
-
-        HttpSession session = request.getSession();
-
-        MajorUser majorUser = (MajorUser) session.getAttribute("myUser");
-        System.err.println(majorUser.getId()+"   "+majorUser.getUserName()+"   "+majorUser.getPassword()+"  "+majorUser.getFirstName()+"   "+majorUser.getLastName());
-        MajorUser user= majorUserService.findById(majorUser.getId()).get();
-        ticket.getMajorUserList().add(user);
-        user.getTicketList().add(ticket);
-        ticketService.save(ticket);
-
-        model.addAttribute("ticketRegistered", ticket);*/
-
         return "resultOfBuyTicket";
     }
 }
