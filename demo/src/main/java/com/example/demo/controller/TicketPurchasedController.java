@@ -15,13 +15,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 @Controller
 public class TicketPurchasedController {
 
     @Autowired
     private TicketService ticketService;
+
+/*
+    @Autowired
+    private RegisteredUserService registeredUserService;
+*/
 
     @GetMapping(value = "/tickets-purchased")
     public String showAllTicketPurchased(HttpServletRequest request, Model model) {
@@ -31,27 +35,29 @@ public class TicketPurchasedController {
             return "homePage";
 
         MajorUser user = (MajorUser) session.getAttribute("myUser");
-      List<Ticket> ticketList=  ticketService.findAllByUserId(user.getId());
-      if(ticketList.isEmpty())
-          return "notFoundPage";
+        List<Ticket> ticketList = ticketService.findAllTicketByUserId(user.getId());
 
-        model.addAttribute("allTicket", ticketList);
+        if (ticketList.isEmpty())
+            return "notFoundPage";
+
+        model.addAttribute("allTickets", ticketList);
         return "allTicketPurchased";
     }
 
     @PostMapping(value = "/tickets-purchased")
-    public String AllTicketPurchased(@RequestParam("ticket_id") Long ticketId ,Model model){
+    public String AllTicketPurchased(@RequestParam("ticket_id") Long ticketId, Model model) {
 
-        Optional<Ticket> optionalTicket = ticketService.findById(ticketId);
 
-       model.addAttribute("myTicket",optionalTicket.get());
-       model.addAttribute("access", LocalDateTime.now().isAfter(optionalTicket.get().getFlightDate()
-               .atTime(optionalTicket.get().getTakeOfTime())) ? "no": "yes");
+        Ticket ticket = ticketService.findWithId(ticketId);
+
+
+
+        model.addAttribute("myTicket", ticket);
+        model.addAttribute("access", LocalDateTime.now().isAfter(ticket.getTravel().getFlightDate()
+                .atTime(ticket.getTravel().getTakeOfTime())) ? "no" : "yes");
 
         return "ticketPurchased";
     }
-
-
 
 
 }

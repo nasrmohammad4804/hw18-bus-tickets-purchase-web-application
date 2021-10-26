@@ -5,14 +5,8 @@ import com.example.demo.repository.TicketRepository;
 import com.example.demo.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class TicketServiceImpl implements TicketService {
 
@@ -80,35 +74,12 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> findAllTicketByOriginAndDestinationAndFlightDate(String origin, String destination, LocalDate flightDate) {
-
-        LocalDate currentDate = LocalDate.now();
-        Predicate<LocalDate> predicate = (currentDate::isEqual);
-      Predicate<LocalDate> result=  predicate.or(currentDate::isBefore);
-
-        return ticketRepository.findAllByOriginAndDestinationAndFlightDate(origin, destination, flightDate)
-                .stream().filter(x -> x.getCapacity() > 0 && (result.test(x.getFlightDate()))).collect(Collectors.toList());
+    public List<Ticket> findAllTicketByUserId(Long userId) {
+       return ticketRepository.findAllTicketByUserId(userId);
     }
 
     @Override
-    public void addDefaultTicket() {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        List<Ticket> tickets = new LinkedList<>();
-
-        LocalTime.parse(LocalTime.now().format(formatter));
-        tickets.add(new Ticket(457L, LocalDate.parse("2021-10-26"), LocalTime.parse(LocalTime.parse("14:30:15").format(formatter)), "tehran", "isfahan", 40));
-        tickets.add(new Ticket(571L, LocalDate.parse("2021-10-26"), LocalTime.parse(LocalTime.parse("17:00:15").format(formatter)), "tehran", "isfahan", 55));
-        tickets.add(new Ticket(128L, LocalDate.parse("2021-10-27"), LocalTime.parse(LocalTime.parse("19:45:00").format(formatter)), "tehran", "isfahan", 38));
-        tickets.add(new Ticket(649L, LocalDate.parse("2021-10-27"), LocalTime.parse(LocalTime.parse("13:25:48").format(formatter)), "tehran", "isfahan", 60));
-
-        tickets.forEach(x -> ticketRepository.save(x));
+    public Ticket findWithId(Long id) {
+        return ticketRepository.findWithId(id);
     }
-
-    @Override
-    public List<Ticket> findAllByUserId(Long userId) {
-        return ticketRepository.findAllByUserId(userId);
-    }
-
-
 }

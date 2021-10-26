@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.Ticket;
-import com.example.demo.service.TicketService;
-import com.example.demo.service.impl.MajorUserServiceImpl;
+import com.example.demo.domain.Travel;
+import com.example.demo.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,34 +15,28 @@ import java.util.List;
 @Controller
 public class UserPanelController {
 
-
     @Autowired
-    private MajorUserServiceImpl userService;
-
-    @Autowired
-    private TicketService ticketService;
+    private TravelService travelService;
 
     @GetMapping(value = "user-panel")
     public String userPanel(){
         return "userPanel";
     }
     @PostMapping(value = "user-panel")
-    public String userPanel(@RequestParam String origin , @RequestParam String destination, @RequestParam String date, Model model){
+    public String userPanel(@RequestParam String origin , @RequestParam String destination, @RequestParam String date, Model model) {
 
-        LocalDate flightDate=LocalDate.parse(date);
-        List<Ticket> tickets = ticketService.findAllTicketByOriginAndDestinationAndFlightDate(origin, destination, flightDate);
+        LocalDate flightDate = LocalDate.parse(date);
+        List<Travel> travels = travelService.findAllTravelByOriginAndDestinationAndFlightDate(origin, destination, flightDate);
 
-        if(origin.equals(destination)){
-            model.addAttribute("myError","1");
+        if (origin.equals(destination)) {
+            model.addAttribute("myError", "1");
             return "userPanel";
         }
 
-        if(tickets.isEmpty())
+        if (travels.isEmpty())
             return "notFoundPage";
 
-        model.addAttribute("allTicket",tickets);
+        model.addAttribute("allTravel", travels);
         return "chooseTicket";
-
-
     }
 }

@@ -16,10 +16,6 @@ import java.io.Serializable;
 public abstract class User implements Serializable {
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
-
 
     @Column(name = FIRST_NAME)
     protected String firstName;

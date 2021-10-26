@@ -1,6 +1,5 @@
 package com.example.demo.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,18 +7,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = {@UniqueConstraint(name = "", columnNames = {Ticket.TRAVEL_ID})})
+@NamedEntityGraph(name = "TicketWithTravel",
+attributeNodes = {@NamedAttributeNode(value = "travel")})
+
 public class Ticket implements Serializable {
 
     public static final String TRAVEL_ID = "travel_id";
@@ -30,39 +26,19 @@ public class Ticket implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = TRAVEL_ID)
-    private Long travelId;
+    @ManyToOne()
+    @JoinColumn(name = TRAVEL_ID)
+    private Travel travel;
 
-    @Column(name = FLIGHT_DATE)
-    private LocalDate flightDate;
+    @ManyToOne
+    @JoinColumn(name = MajorUser.MAJOR_USER_ID)
+    private MajorUser majorUser;
 
-    @JsonFormat(pattern = "HH:mm:ss", shape = JsonFormat.Shape.STRING)
-    private LocalTime takeOfTime;
-
-    private String origin;
-    private String destination;
-
-    @Column(columnDefinition = "tinyint(1)")
-    private Boolean isDeleted;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @Embedded
     private RegisteredUser registeredUser;
 
-    private int capacity;
-
-    public Ticket(Long travelId, LocalDate flightDate, LocalTime takeOfTime, String origin, String destination, int capacity) {
-        this.travelId = travelId;
-        this.flightDate = flightDate;
-        this.takeOfTime = takeOfTime;
-        this.origin = origin;
-        this.destination = destination;
-        this.capacity = capacity;
+    public Ticket(Travel travel, RegisteredUser registeredUser) {
+        this.travel = travel;
+        this.registeredUser = registeredUser;
     }
-
-
-    @ManyToMany()
-    @JoinTable(name = MajorUser.USER_TICKET_TABLE,joinColumns = {@JoinColumn(name = MajorUser.USER_ID)},
-            inverseJoinColumns = {@JoinColumn(name = Ticket.TICKET_ID)})
-    private List<MajorUser> majorUserList=new LinkedList<>();
 }

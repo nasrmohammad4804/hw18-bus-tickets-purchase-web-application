@@ -3,9 +3,11 @@ package com.example.demo.controller;
 import com.example.demo.domain.MajorUser;
 import com.example.demo.domain.RegisteredUser;
 import com.example.demo.domain.Ticket;
+import com.example.demo.domain.Travel;
 import com.example.demo.domain.enumeration.Gender;
 import com.example.demo.service.MajorUserService;
 import com.example.demo.service.impl.TicketServiceImpl;
+import com.example.demo.service.impl.TravelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,28 +25,41 @@ public class TicketBuyController {
     private TicketServiceImpl ticketService;
 
     @Autowired
-    private MajorUserService majorUserService;
+    TravelServiceImpl travelService;
+
 
     @GetMapping(value = "/choose-ticket")
-    public String chooseTicket(@RequestParam("ticketId") Long ticketId, Model model) {
-        model.addAttribute("ticket_id", ticketId);
+    public String chooseTicket(@RequestParam("travelId") Long travelId, Model model) {
+        model.addAttribute("travel_id", travelId);
+
         return "getDataFromUser";
     }
 
     @PostMapping("/choose-ticket")
-    public String chooseTicket(@RequestParam("gender") Gender gender, @RequestParam("ticketId") Long ticketId, @RequestParam("fullName") String fullName, Model model, HttpServletRequest request) {
+    public String chooseTicket(@RequestParam("gender") Gender gender, @RequestParam("travelId") Long travelId, @RequestParam("fullName") String fullName, Model model, HttpServletRequest request) {
 
         String[] result = fullName.split(" ");
 
-        Ticket ticket = ticketService.findById(ticketId).get();
-        ticket.setRegisteredUser(new RegisteredUser(result[0], result[1], gender));
+        Travel travel = travelService.findById(travelId).get();
+        HttpSession session = request.getSession();
+        MajorUser user =(MajorUser) session.getAttribute("myUser");
+
+
+        RegisteredUser registeredUser=new RegisteredUser(result[0],result[1],gender);
+        Ticket ticket=new Ticket(travel,registeredUser);
+       int capacity= travel.getCapacity();
+       travel.setCapacity(--capacity);
+       ticket.setMajorUser(user);
+       ticketService.save(ticket);
+
+       model.addAttribute("ticket",ticket);
+
+     /*   ticket.getRegisteredUsers().add((new RegisteredUser(result[0], result[1], gender)));
+
         int capacity=ticket.getCapacity();
         ticket.setCapacity(--capacity);
 
         HttpSession session = request.getSession();
-
-
-
 
         MajorUser majorUser = (MajorUser) session.getAttribute("myUser");
         System.err.println(majorUser.getId()+"   "+majorUser.getUserName()+"   "+majorUser.getPassword()+"  "+majorUser.getFirstName()+"   "+majorUser.getLastName());
@@ -53,9 +68,8 @@ public class TicketBuyController {
         user.getTicketList().add(ticket);
         ticketService.save(ticket);
 
-        model.addAttribute("ticketRegistered", ticket);
+        model.addAttribute("ticketRegistered", ticket);*/
 
         return "resultOfBuyTicket";
-
     }
 }
