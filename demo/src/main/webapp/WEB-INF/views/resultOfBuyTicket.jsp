@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-<% Ticket ticket=(Ticket) request.getAttribute("ticketRegistered");
+<% Ticket ticket=(Ticket) request.getAttribute("ticket");
 String genderType=(ticket.getRegisteredUser().getGender().name()).equals("MEN") ? "mr" : "mrs";
 String name=ticket.getRegisteredUser().getFirstName();
 String family=ticket.getRegisteredUser().getLastName();

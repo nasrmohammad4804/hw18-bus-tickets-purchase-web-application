@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../../resource/registerPage.css" rel="stylesheet">
+    <link href="../../resource/static/css/registerPage.css" rel="stylesheet">
 </head>
 
 <body>

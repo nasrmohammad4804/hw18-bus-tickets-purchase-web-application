@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../resource/allTicketPurchased.css">
+    <link rel="stylesheet" href="../../resource/static/css/allTicketPurchased.css">
 </head>
 <body>
 
@@ -22,11 +22,12 @@
         <th>choose</th>
     </tr>
 
-    <c:forEach var="ticket" items="${allTicket}">
+    <c:forEach var="ticket" items="${allTickets}">
 
         <tr>
+
             <form:form action="/tickets-purchased" method="post">
-                <td><c:out value="${ticket.flightDate}"/></td>
+                <td><c:out value="${ticket.travel.flightDate}"/></td>
 
                 <td><c:out value="${ticket.id}"/></td>
                 <td><input type="submit" value="show ticket"></td>

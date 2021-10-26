@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../resource/ticketPurchased.css">
+    <link rel="stylesheet" href="../../resource/static/css/ticketPurchased.css">
 
 </head>
 <body>
@@ -32,24 +32,24 @@
     </tr>
     <tr>
         <td  class="bg-bedge">origin</td>
-        <td><%=ticket.getOrigin()%></td>
+        <td><%=ticket.getTravel().getOrigin()%></td>
     </tr>
     <tr>
         <td  class="bg-bedge">destination</td>
-        <td><%=ticket.getDestination()%></td>
+        <td><%=ticket.getTravel().getDestination()%></td>
     </tr>
     <tr>
         <td  class="bg-bedge">flight-date</td>
-        <td><%=ticket.getFlightDate()%></td>
+        <td><%=ticket.getTravel().getFlightDate()%></td>
     </tr>
     <tr>
         <td  class="bg-bedge">flight-time</td>
-        <td><%=ticket.getTakeOfTime()%></td>
+        <td><%=ticket.getTravel().getTakeOfTime()%></td>
 
     </tr>
     <tr>
         <td  class="bg-bedge">travel id</td>
-        <td><%=ticket.getTravelId()%></td>
+        <td><%=ticket.getTravel().getId()%></td>
     </tr>
 
     <tr>
