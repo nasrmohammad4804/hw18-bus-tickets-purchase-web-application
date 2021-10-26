@@ -1,0 +1,45 @@
+#mySubmit{
+
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+}
+table, tr,td{
+    border: 2px solid black;
+}
+table{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 450px;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: rgba(0,0 ,0, .2);
+    display: block;
+    border-radius: 5px;
+}
+td{
+    padding: 10px;
+}
+input{
+    font-size: 17px;
+
+}
+td{
+    width: 50%;
+}
+input:focus{
+    background-color:rgb(94, 230, 223);
+}
+body{
+    height: 100vh;
+    background-image: url('https://safar724.com/Content/images/uploaded/big.5hi5v5z4.v5q.jpg');
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 100% 100%;
+}
